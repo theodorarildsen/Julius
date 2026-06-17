@@ -238,9 +238,9 @@
 <body>
 
 <div class="header">
-  <div class="header-eyebrow">🎂 Birthday Quest</div>
-  <h1 class="header-title">Happy Birthday,<br><span>Julius!</span></h1>
-  <p class="header-sub">Complete all four challenges to unlock the location of your gift. Good luck — you'll need it.</p>
+  <div class="header-eyebrow">🎂 Fødselsdags Dyst</div>
+  <h1 class="header-title">Tillykke med dagen,<br><span>Julius!</span></h1>
+  <p class="header-sub">Klar alle mine fire udfordringer og find min gave gemt inde i København...</p>
 </div>
 
 <div class="progress-wrap">
@@ -258,12 +258,12 @@
     <div class="card-header">
       <div class="card-icon">♟️</div>
       <div class="card-meta">
-        <div class="card-step">Challenge 1</div>
-        <div class="card-title">Beat me in Chess</div>
+        <div class="card-step">Udfordring 1</div>
+        <div class="card-title">Slå mig i Skak</div>
       </div>
       <div class="card-status pending" id="status-0"></div>
     </div>
-    <div class="card-body" id="body-0">Checkmate Theodor in a single game of chess. No takebacks. No excuses.</div>
+    <div class="card-body" id="body-0">Vind over mig i en dyst af hjernen og få din ledetråd.</div>
     <div class="hint-box" id="hint-0" style="display:none">
       <span class="hint-emoji">🔍</span>
       <span id="hint-text-0"></span>
@@ -274,12 +274,12 @@
     <div class="card-header">
       <div class="card-icon">🏸</div>
       <div class="card-meta">
-        <div class="card-step">Challenge 2</div>
-        <div class="card-title">Beat me in Badminton</div>
+        <div class="card-step">Udfordring 2</div>
+        <div class="card-title">Slå mig i Badminton</div>
       </div>
       <div class="card-status unknown" id="status-1"></div>
     </div>
-    <div class="card-body" id="body-1">Complete Challenge 1 to unlock this one.</div>
+    <div class="card-body" id="body-1">Klar første udfordring for at se dette.</div>
     <div class="hint-box" id="hint-1" style="display:none">
       <span class="hint-emoji">🔍</span>
       <span id="hint-text-1"></span>
@@ -290,12 +290,12 @@
     <div class="card-header">
       <div class="card-icon">🎱</div>
       <div class="card-meta">
-        <div class="card-step">Challenge 3</div>
-        <div class="card-title">Beat me in Pool</div>
+        <div class="card-step">Udfordring 3</div>
+        <div class="card-title">Slå mig i Pool</div>
       </div>
       <div class="card-status unknown" id="status-2"></div>
     </div>
-    <div class="card-body" id="body-2">Complete Challenge 2 to unlock this one.</div>
+    <div class="card-body" id="body-2">Klar anden udfordring for at se dette.</div>
     <div class="hint-box" id="hint-2" style="display:none">
       <span class="hint-emoji">🔍</span>
       <span id="hint-text-2"></span>
@@ -306,12 +306,12 @@
     <div class="card-header">
       <div class="card-icon">🏆</div>
       <div class="card-meta">
-        <div class="card-step">Final Challenge</div>
-        <div class="card-title">Pick Your Battle</div>
+        <div class="card-step">Sidste udfordring</div>
+        <div class="card-title">Vælg selv din egen dyst mod mig.</div>
       </div>
       <div class="card-status unknown" id="status-3"></div>
     </div>
-    <div class="card-body" id="body-3">Complete Challenge 3 to unlock this one.</div>
+    <div class="card-body" id="body-3">Klar tredje udfordring for at se dette.</div>
     <div class="hint-box" id="hint-3" style="display:none">
       <span class="hint-emoji">🔍</span>
       <span id="hint-text-3"></span>
@@ -322,7 +322,7 @@
 <div class="final-card" style="margin-top:16px">
   <div class="final-box" id="final-reveal">
     <div class="trophy">🎁</div>
-    <h2>You found it!</h2>
+    <h2>Du fandt den!</h2>
     <p id="final-text"></p>
   </div>
 </div>
@@ -375,7 +375,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/fireba
 import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
 
 // ── CONFIG ── Change these before the party!
-const ADMIN_PASSWORD = "theodor2025";
+const ADMIN_PASSWORD = "theodor67";
 const HINTS = [
   "Hint 1: Fill this in before the party!",
   "Hint 2: Fill this in before the party!",
