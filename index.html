@@ -379,7 +379,7 @@ const HINTS = [
   "Hint 3: Lorteøen",
   "Final hint: Amagerbrogade. Ærkeenglen kigger ned",
 ];
-const FINAL_MESSAGE = "You conquered every challenge. Go check under the bed in Theodor's room — your gift is waiting! 🎁";
+const FINAL_MESSAGE = "Du har triumferet over mig i alle mine udfordringer. Du er sejrherren. Gaven befinder sig hjemme hos Michael";
 // ── END CONFIG ──
 
 const firebaseConfig = {
@@ -438,18 +438,18 @@ function renderAll() {
       statusEl.className = "card-status done";
       statusEl.textContent = "✓";
       hintEl.style.display = "flex";
-      if (i === 0) bodyEl.textContent = "Skakmat leveret. Theodor giver op.";
-      if (i === 1) bodyEl.textContent = "En kamp badminton, en vinder. Du klarede det.";
-      if (i === 2) bodyEl.textContent = "Pool-mester. Du har stadig styr på det.";
+      if (i === 0) bodyEl.textContent = "Skakmat leveret.";
+      if (i === 1) bodyEl.textContent = "En kamp badminton, en vinder.";
+      if (i === 2) bodyEl.textContent = "Der er vist en ny Pool Champion";
       if (i === 3) bodyEl.textContent = "Din egen dyst, vundet. Flot spillet.";
     } else if (isUnlocked) {
       card.className = "card";
       statusEl.className = "card-status pending";
       statusEl.textContent = "";
       hintEl.style.display = "none";
-      if (i === 1) bodyEl.textContent = "Slå Theodor i en enkelt kamp badminton. Kom an.";
-      if (i === 2) bodyEl.textContent = "Slå Theodor i en enkelt kamp pool. Ingen revanche.";
-      if (i === 3) bodyEl.textContent = "Vælg selv en dyst du er sikker på at vinde mod Theodor.";
+      if (i === 1) bodyEl.textContent = "Slå mig i Badminton for din næste ledetråd";
+      if (i === 2) bodyEl.textContent = "Kan du vinde over pool championen?";
+      if (i === 3) bodyEl.textContent = "Vælg hvilken som helst dyst som du er sten sikker på at du kan vinde imod mig";
     } else {
       card.className = "card locked";
       statusEl.className = "card-status unknown";
