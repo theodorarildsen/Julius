@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,30 +141,6 @@
   .sync-dot.connected { background: var(--accent); }
   .sync-dot.error { background: #e74c3c; }
 
-  .fly-btn {
-    position: fixed; top: 16px; left: 16px;
-    width: 56px; height: 56px;
-    background: #f5efe6; border-radius: 50%;
-    border: none; cursor: pointer; padding: 0; z-index: 99;
-    transform-origin: center;
-    animation: flyHover 3s ease-in-out infinite;
-  }
-  .fly-btn img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .fly-btn:hover { animation: none; transform: scale(1.15) rotate(-8deg); }
-  @keyframes flyHover {
-    0%,100% { transform: translateY(0px) rotate(-3deg); }
-    30%      { transform: translateY(-5px) rotate(3deg); }
-    60%      { transform: translateY(-2px) rotate(-5deg); }
-  }
-  .fly-btn.squished { animation: squish 0.4s cubic-bezier(.36,.07,.19,.97) both !important; }
-  @keyframes squish {
-    0%   { transform: scale(1); }
-    20%  { transform: scale(1.4, 0.5) rotate(10deg); }
-    50%  { transform: scale(0.8, 1.3) rotate(-6deg); }
-    75%  { transform: scale(1.1, 0.9); }
-    100% { transform: scale(1); }
-  }
-
   .admin-trigger {
     position: fixed; bottom: 20px; right: 20px;
     width: 44px; height: 44px; border-radius: 50%;
@@ -223,8 +199,29 @@
   .admin-panel { display: none; }
 
   .final-card { max-width: 560px; margin: 0 auto; padding: 0 24px; }
+
+  /* Reveal button — shown once all challenges are done, hint stays separate from this */
+  .reveal-btn {
+    display: none;
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--gold), #e0ab4a);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.15s, opacity 0.15s;
+    animation: fadeSlide 0.5s ease both;
+  }
+  .reveal-btn:hover { transform: scale(1.02); opacity: 0.95; }
+  .reveal-btn:active { transform: scale(0.98); }
+
   .final-box {
-    display: none; margin-top: 0; padding: 22px;
+    display: none; margin-top: 16px; padding: 22px;
     background: linear-gradient(135deg, #fffbf0, #fff8e7);
     border: 2px solid var(--gold); border-radius: 16px;
     text-align: center; box-shadow: var(--shadow-lg); animation: fadeSlide 0.5s ease both;
@@ -320,16 +317,16 @@
 </div>
 
 <div class="final-card" style="margin-top:16px">
+  <button class="reveal-btn" id="reveal-btn">🎁 Åbn din gave-ledetråd</button>
   <div class="final-box" id="final-reveal">
     <div class="trophy">🎁</div>
-    <h2>Du fandt den!</h2>
+    <h2>Du er snart i mål!</h2>
     <p id="final-text"></p>
   </div>
 </div>
 
 <!-- Sync indicator -->
 <div class="sync-dot" id="sync-dot"></div>
-
 
 <!-- Admin trigger -->
 <button class="admin-trigger" id="admin-btn" title="Admin">🔑</button>
@@ -377,10 +374,10 @@ import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebase
 // ── CONFIG ── Change these before the party!
 const ADMIN_PASSWORD = "theodor67";
 const HINTS = [
-  "Hint 1: Fill this in before the party!",
-  "Hint 2: Fill this in before the party!",
-  "Hint 3: Fill this in before the party!",
-  "Final hint: This is where the gift is hidden!",
+  "Hint 1: Gaven er gemt hos en fælles ven",
+  "Hint 2: Distortion er blevet holdt her",
+  "Hint 3: Lorteøen",
+  "Final hint: Amagerbrogade. Ærkeenglen kigger ned",
 ];
 const FINAL_MESSAGE = "You conquered every challenge. Go check under the bed in Theodor's room — your gift is waiting! 🎁";
 // ── END CONFIG ──
@@ -441,32 +438,34 @@ function renderAll() {
       statusEl.className = "card-status done";
       statusEl.textContent = "✓";
       hintEl.style.display = "flex";
-      if (i === 0) bodyEl.textContent = "Checkmate delivered. Theodor concedes.";
-      if (i === 1) bodyEl.textContent = "One game of badminton, one winner. You pulled it off.";
-      if (i === 2) bodyEl.textContent = "Pool champion. Proof that you've still got it.";
-      if (i === 3) bodyEl.textContent = "Your chosen battle, won. Well played.";
+      if (i === 0) bodyEl.textContent = "Skakmat leveret. Theodor giver op.";
+      if (i === 1) bodyEl.textContent = "En kamp badminton, en vinder. Du klarede det.";
+      if (i === 2) bodyEl.textContent = "Pool-mester. Du har stadig styr på det.";
+      if (i === 3) bodyEl.textContent = "Din egen dyst, vundet. Flot spillet.";
     } else if (isUnlocked) {
       card.className = "card";
       statusEl.className = "card-status pending";
       statusEl.textContent = "";
       hintEl.style.display = "none";
-      if (i === 1) bodyEl.textContent = "Beat Theodor in a single game of badminton. Come on then.";
-      if (i === 2) bodyEl.textContent = "Sink more balls than Theodor in a single game of pool. No rematches.";
-      if (i === 3) bodyEl.textContent = "Pick anything you're confident you can beat Theodor at. Your call, your odds.";
+      if (i === 1) bodyEl.textContent = "Slå Theodor i en enkelt kamp badminton. Kom an.";
+      if (i === 2) bodyEl.textContent = "Slå Theodor i en enkelt kamp pool. Ingen revanche.";
+      if (i === 3) bodyEl.textContent = "Vælg selv en dyst du er sikker på at vinde mod Theodor.";
     } else {
       card.className = "card locked";
       statusEl.className = "card-status unknown";
       statusEl.textContent = "";
       hintEl.style.display = "none";
-      if (i > 0) bodyEl.textContent = `Complete Challenge ${i} to unlock this one.`;
+      if (i > 0) bodyEl.textContent = `Klar udfordring ${i} for at låse denne op.`;
     }
   }
 
+  // Reveal button only shows once all 4 are complete — hint and final reveal are now separate
+  const revealBtn = document.getElementById("reveal-btn");
   const finalReveal = document.getElementById("final-reveal");
   if (completed.every(Boolean)) {
-    finalReveal.classList.add("show");
-    document.getElementById("final-text").textContent = FINAL_MESSAGE;
+    revealBtn.style.display = "block";
   } else {
+    revealBtn.style.display = "none";
     finalReveal.classList.remove("show");
   }
 
@@ -486,6 +485,13 @@ function adminToggle(i) {
 for (let i = 0; i < 4; i++) {
   document.getElementById(`toggle-${i}`).addEventListener("change", () => adminToggle(i));
 }
+
+// Reveal button click — shows the final gift message on demand
+document.getElementById("reveal-btn").addEventListener("click", () => {
+  document.getElementById("final-text").textContent = FINAL_MESSAGE;
+  document.getElementById("final-reveal").classList.add("show");
+  document.getElementById("reveal-btn").style.display = "none";
+});
 
 // ── Modal / auth ──
 const overlay = document.getElementById("modal-overlay");
@@ -525,9 +531,6 @@ function tryAuth() {
     pwInput.focus();
   }
 }
-
-
-
 </script>
 </body>
 </html>
