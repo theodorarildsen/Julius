@@ -256,14 +256,14 @@
 <div class="cards">
   <div class="card" id="card-0">
     <div class="card-header">
-      <div class="card-icon">🎱</div>
+      <div class="card-icon">♟️</div>
       <div class="card-meta">
         <div class="card-step">Challenge 1</div>
-        <div class="card-title">Beat me in Pool</div>
+        <div class="card-title">Beat me in Chess</div>
       </div>
       <div class="card-status pending" id="status-0"></div>
     </div>
-    <div class="card-body" id="body-0">Sink more balls than Theodor in a single game of pool. No rematches. No excuses.</div>
+    <div class="card-body" id="body-0">Checkmate Theodor in a single game of chess. No takebacks. No excuses.</div>
     <div class="hint-box" id="hint-0" style="display:none">
       <span class="hint-emoji">🔍</span>
       <span id="hint-text-0"></span>
@@ -288,10 +288,10 @@
 
   <div class="card locked" id="card-2">
     <div class="card-header">
-      <div class="card-icon">🎯</div>
+      <div class="card-icon">🎱</div>
       <div class="card-meta">
         <div class="card-step">Challenge 3</div>
-        <div class="card-title">Challenge 3</div>
+        <div class="card-title">Beat me in Pool</div>
       </div>
       <div class="card-status unknown" id="status-2"></div>
     </div>
@@ -307,7 +307,7 @@
       <div class="card-icon">🏆</div>
       <div class="card-meta">
         <div class="card-step">Final Challenge</div>
-        <div class="card-title">Final Challenge</div>
+        <div class="card-title">Pick Your Battle</div>
       </div>
       <div class="card-status unknown" id="status-3"></div>
     </div>
@@ -349,7 +349,7 @@
       <div class="modal-sub">Toggle each challenge when Julius completes it.</div>
       <div class="admin-steps">
         <div class="admin-row">
-          <span class="admin-row-label">🎱 Challenge 1 — Pool</span>
+          <span class="admin-row-label">♟️ Challenge 1 — Chess</span>
           <label class="toggle"><input type="checkbox" id="toggle-0"><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
         </div>
         <div class="admin-row">
@@ -357,11 +357,11 @@
           <label class="toggle"><input type="checkbox" id="toggle-1"><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
         </div>
         <div class="admin-row">
-          <span class="admin-row-label">🎯 Challenge 3</span>
+          <span class="admin-row-label">🎱 Challenge 3 — Pool</span>
           <label class="toggle"><input type="checkbox" id="toggle-2"><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
         </div>
         <div class="admin-row">
-          <span class="admin-row-label">🏆 Final Challenge</span>
+          <span class="admin-row-label">🏆 Final — Pick Your Battle</span>
           <label class="toggle"><input type="checkbox" id="toggle-3"><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
         </div>
       </div>
@@ -441,16 +441,18 @@ function renderAll() {
       statusEl.className = "card-status done";
       statusEl.textContent = "✓";
       hintEl.style.display = "flex";
-      if (i === 0) bodyEl.textContent = "Pool champion. Proof that you've still got it.";
+      if (i === 0) bodyEl.textContent = "Checkmate delivered. Theodor concedes.";
       if (i === 1) bodyEl.textContent = "One game of badminton, one winner. You pulled it off.";
+      if (i === 2) bodyEl.textContent = "Pool champion. Proof that you've still got it.";
+      if (i === 3) bodyEl.textContent = "Your chosen battle, won. Well played.";
     } else if (isUnlocked) {
       card.className = "card";
       statusEl.className = "card-status pending";
       statusEl.textContent = "";
       hintEl.style.display = "none";
       if (i === 1) bodyEl.textContent = "Beat Theodor in a single game of badminton. Come on then.";
-      if (i === 2) bodyEl.textContent = "Complete Challenge 2 to unlock this one.";
-      if (i === 3) bodyEl.textContent = "Complete Challenge 3 to unlock this one.";
+      if (i === 2) bodyEl.textContent = "Sink more balls than Theodor in a single game of pool. No rematches.";
+      if (i === 3) bodyEl.textContent = "Pick anything you're confident you can beat Theodor at. Your call, your odds.";
     } else {
       card.className = "card locked";
       statusEl.className = "card-status unknown";
